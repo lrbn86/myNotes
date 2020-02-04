@@ -1,5 +1,5 @@
 const noteTitleInput = document.getElementById("noteTitle");
-
+const noteBodyInput = document.getElementById("noteBody");
 //noteTitleInput.focus();
 
 const notes = document.getElementById("notes");
@@ -13,6 +13,9 @@ submitBtn.addEventListener("click", function() {
   noteBlock.innerHTML = noteTitleInput.value;
 
   notes.append(noteBlock);
+
+  noteTitleInput.value = "";
+  noteBodyInput.value = "";
 
 });
 
