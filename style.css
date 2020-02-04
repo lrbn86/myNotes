@@ -18,6 +18,8 @@ input, textarea {
 #notes {
   overflow: scroll;
   height: 500px;
+  list-style-type: none;
+  color: white;
 }
 
 header h1 {
