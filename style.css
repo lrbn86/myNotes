@@ -1,0 +1,30 @@
+ @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #444;
+}
+
+main {
+}
+
+input, textarea {
+  display: block;
+}
+
+#notes {
+  overflow: scroll;
+  height: 500px;
+}
+
+header h1 {
+  color: white;
+  font-size: 52px;
+}
+
+footer {
+  color: white;
+}
