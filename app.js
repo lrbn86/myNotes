@@ -1,2 +1,15 @@
-const message = document.getElementById('msg');
+const noteTitleInput = document.getElementById("noteTitle");
 
+const notes = document.getElementById("notes");
+
+const submitBtn = document.getElementById("submitBtn");
+
+submitBtn.addEventListener("click", function() {
+
+  var noteBlock = document.createElement("li");
+  noteBlock.className = "note-block";
+  noteBlock.innerHTML = noteTitleInput.value;
+
+  notes.append(noteBlock);
+
+});
