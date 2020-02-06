@@ -1,7 +1,9 @@
 const noteBodyInput = document.getElementById("noteBodyInput");
 const notes = document.getElementById("notes");
 const createNewNoteBtn = document.getElementById("createNewNoteBtn");
+const selectedNotes = document.getElementsByClassName("selected");
 
+var noteBoxes;
 var noteID = 0;
 var selectedNote;
 
@@ -13,26 +15,31 @@ createNewNoteBtn.addEventListener("click", function() {
     var noteBlock = document.createElement("li");
     noteID++;
     noteBlock.id = "noteBlock" + noteID;
-    noteBlock.className = "noteBlock unselectable not-selected";
+    noteBlock.className = "noteBlock";
     noteBlock.name = "noteBlock";
     noteBlock.textContent = noteBodyInput.value;
     notes.prepend(noteBlock);
+
+    noteBoxes = document.getElementsByClassName("noteBlock");
+    for (let i = 0; i < noteBoxes.length; i++) {
+      noteBoxes[i].addEventListener("click", selectedFunc);
+    }
   }
     noteBodyInput.value = "";
     noteBodyInput.focus();
     notes.scrollTop = notes.scrollHeight;
+    resetSelections();
 });
 
-notes.onclick = function(event) {
-  const target = event.target;
-  if (target.classList[0] === "noteBlock") {
-    noteBodyInput.value = target.textContent;
-    noteBodyInput.focus();
-    
-    // TODO: The li should stay highlighted in lightskyblue after clicking
-    // so that we can know what note we are currently looking at
-    // Idea #1: Use classes to change and remove etc. Idk
-    target.classList.remove("not-selected");
-    target.className += " selected";
-    }
-};
+function resetSelections() {
+  for (let i = 0; i < selectedNotes.length; i++) {
+    selectedNotes[i].classList.remove("selected");
+  }
+}
+
+function selectedFunc(e) {
+  resetSelections();
+  e.target.classList.add("selected");
+  noteBodyInput.value = e.target.textContent;
+  noteBodyInput.focus();
+}
