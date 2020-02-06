@@ -1,37 +1,32 @@
-const noteTitleInput = document.getElementById("noteTitle");
-const noteBodyInput = document.getElementById("noteBody");
-
-noteTitleInput.focus();
-
-// Make sure that the inputs are empty (even with refresh)
-noteTitleInput.value = "";
-noteBodyInput.value = "";
-
+const noteBodyInput = document.getElementById("noteBodyInput");
 const notes = document.getElementById("notes");
 
-const submitBtn = document.getElementById("submitBtn");
+var noteID = 0;
 
-submitBtn.addEventListener("click", function() {
-  
-  // We don't want any blank entries
-  if (noteTitleInput.value === "" || noteBodyInput.value === "") {
-    alert("ERROR: Please enter both the title and the message to create a note");
-    return;
+var selectedNote;
+
+noteBodyInput.focus();
+noteBodyInput.value = "";
+
+noteBodyInput.addEventListener("input", function() {
+  // Check if ul contains any li's
+  // if it does, then create a new li
+  // else ...What do we do if it does have some li's
+  if(!notes.hasChildNodes() && noteBodyInput.value.length >= 1) {
+    const noteBlock = document.createElement("li");
+    noteBlock.innerHTML = noteBodyInput.value;
+    noteBlock.id = "noteBlock" + noteID;
+    noteBlock.className = "noteBlock";
+    selectedNote = noteBlock.id;
+    notes.append(noteBlock);
+  } else {
+    // Check what li we are on
+    var targetNote = document.getElementById(selectedNote);
+    if (noteBodyInput.value.length < 1) {
+      notes.removeChild(targetNote);
+    }
+    targetNote.innerHTML = noteBodyInput.value;
+    console.log(targetNote.innerHTML);
+
   }
-
-  // Create a li with the note title and append to the ul
-  var noteBlock = document.createElement("li");
-  noteBlock.className = "note-block";
-  noteBlock.innerHTML = noteTitleInput.value;
-
-  notes.append(noteBlock);
-
-  // Clear inputs
-  noteTitleInput.value = "";
-  noteBodyInput.value = "";
-
-  notes.scrollTop = notes.scrollHeight;
-
 });
-
-
