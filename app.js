@@ -1,29 +1,42 @@
 const noteBodyInput = document.getElementById("noteBodyInput");
+noteBodyInput.focus();
+noteBodyInput.value = "";
+
 const notes = document.getElementById("notes");
 const createNewNoteBtn = document.getElementById("createNewNoteBtn");
 const selectedNotes = document.getElementsByClassName("selected");
 
-var noteBoxes;
-var noteID = 0;
+var noteID = sessionStorage.getItem("noteID");
 var selectedNote;
 
-noteBodyInput.focus();
-noteBodyInput.value = "";
+function initSetup() {
+  noteID = 0;
+  for (let i = 1; i < sessionStorage.length; i++) {
+    const item = sessionStorage.getItem("noteBlock" + i);
+    var noteBlock = createNote(item);
+    noteBlock.addEventListener("click", selectedFunc);
+    notes.prepend(noteBlock);
+  }
+}
+initSetup();
 
+function createNote(content) {
+  var noteBlock = document.createElement("li");
+  noteID++;
+  sessionStorage.setItem("noteID", noteID);
+  noteBlock.id = "noteBlock" + noteID;
+  noteBlock.className = "noteBlock";
+  noteBlock.textContent = content;
+  return noteBlock;
+}
+
+// Listen for new notes being added
 createNewNoteBtn.addEventListener("click", function() {
   if (noteBodyInput.value.trim().length >= 1) {
-    var noteBlock = document.createElement("li");
-    noteID++;
-    noteBlock.id = "noteBlock" + noteID;
-    noteBlock.className = "noteBlock";
-    noteBlock.name = "noteBlock";
-    noteBlock.textContent = noteBodyInput.value;
+    var noteBlock = createNote(noteBodyInput.value);
+    noteBlock.addEventListener("click", selectedFunc);
+    sessionStorage.setItem(noteBlock.id, noteBlock.textContent);
     notes.prepend(noteBlock);
-
-    noteBoxes = document.getElementsByClassName("noteBlock");
-    for (let i = 0; i < noteBoxes.length; i++) {
-      noteBoxes[i].addEventListener("click", selectedFunc);
-    }
   }
     noteBodyInput.value = "";
     noteBodyInput.focus();
