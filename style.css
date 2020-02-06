@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');*/
 
 * {
   font-family: 'Poppins', sans-serif;
@@ -15,6 +15,10 @@ body {
 footer {
   position: absolute;
   bottom: 0;
+}
+
+#noteBodyInput, #createNewNoteBtn {
+  display: block;
 }
 
 #notes {
@@ -43,9 +47,43 @@ footer {
   transition: all 0.2s;
 }
 
-
-.noteBlock:hover, .selected {
+.noteBlock:hover, .selected, #createNewNoteBtn:hover {
   cursor: pointer;
   color: black;
   background-color: lightskyblue;
 }
+
+section {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+#createNote {
+  float: left;
+}
+
+#createNewNoteBtn {
+  margin: 0;
+  font-size: 20pt;
+  padding: 20px;
+  width: 400px;
+  border: none;
+  background-color: black;
+  color: white;
+  transition: all 0.2s;
+}
+
+#createNewNoteBtn:active {
+  opacity: 0.5;
+}
+
+#noteBodyInput {
+  width: 400px;
+  height: 500px;
+
+}
+
+#seeNote {
+float: right;
+}
+
