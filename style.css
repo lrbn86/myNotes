@@ -32,11 +32,11 @@ footer {
   -moz-user-select: none;
   user-select: none;
 }
-
 .noteBlock {
   background-color: black;
   font-size: 14pt;
   padding-left: 15px;
+  margin: 5px;
   width: 300px;
   height: 30px;
   overflow:hidden;
