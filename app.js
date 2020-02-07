@@ -12,6 +12,7 @@ var notesArray = [];
 function initSetup() {
   if (sessionStorage.getItem("notesArray") != null) {
     notesArray = sessionStorage.getItem("notesArray").split(",");
+    // Well, the commas will definitely be a problem.
     notesArray.forEach(function(note) {
       var noteBlock = createNote(note);
       notes.prepend(noteBlock);
@@ -43,11 +44,9 @@ createNewNoteBtn.addEventListener("click", function() {
   resetSelections();
 });
 
-// If user selects a note, but then erases the note's content, then it will deselect.
+// Remove selection highlights if anything changes in notesBodyInput
 noteBodyInput.addEventListener("input", function() {
-  if (noteBodyInput.value.trim().length < 1) {
-    resetSelections();
-  }
+  resetSelections();
 });
 
 // Removes selection indicator on all notes
