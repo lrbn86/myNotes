@@ -8,4 +8,4 @@ An app for taking some notes.
 ![Alt text](mockups/myNotes_digital_mockup.png?raw=true "Digital Mockup")
 
 #### Website
-![Alt text](mockups/myNotes_digital_mockup.png?raw=true "Website")
+![Alt text](mockups/myNotes_website.png?raw=true "Website")
