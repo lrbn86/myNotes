@@ -10,7 +10,7 @@ const selectedNotes = document.getElementsByClassName("selected");
 var notesArray = [];
 
 function initSetup() {
-  if (sessionStorage.getItem("notesArray") != null) {
+  if (sessionStorage.getItem("notesArray") != null && sessionStorage.getItem("notesArray") != "") {
     notesArray = sessionStorage.getItem("notesArray").split(",");
     // Well, the commas will definitely be a problem.
     notesArray.forEach(function(note) {
