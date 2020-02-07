@@ -11,8 +11,8 @@ var notesArray = [];
 
 function initSetup() {
   if (sessionStorage.getItem("notesArray") != null && sessionStorage.getItem("notesArray") != "") {
-    notesArray = sessionStorage.getItem("notesArray").split(",");
-    // Well, the commas will definitely be a problem.
+    notesArray = JSON.parse(sessionStorage.getItem("notesArray"));
+    
     notesArray.forEach(function(note) {
       var noteBlock = createNote(note);
       notes.prepend(noteBlock);
@@ -37,7 +37,7 @@ createNewNoteBtn.addEventListener("click", function() {
     notesArray.push(noteBodyInput.value);
     var noteBlock = createNote(noteBodyInput.value);
     notes.prepend(noteBlock);
-    sessionStorage.setItem("notesArray", notesArray);
+    sessionStorage.setItem("notesArray", JSON.stringify(notesArray));
   }
   noteBodyInput.value = "";
   noteBodyInput.focus();
@@ -68,7 +68,7 @@ function selectedFunc(e) {
 // Remove selected element from both array and storage
 function deleteFunc(e) {
   notesArray.splice(notesArray.indexOf(e.target.textContent), 1);
-  sessionStorage.setItem("notesArray", notesArray);
+  sessionStorage.setItem("notesArray", JSON.stringify(notesArray));
   notes.removeChild(e.target);
   noteBodyInput.value = "";
 }
