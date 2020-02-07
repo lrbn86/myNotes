@@ -5,5 +5,7 @@ An app for taking some notes.
 ![Alt text](mockups/myNotes_initial_mockup.png?raw=true "Initial Mockup")
 
 #### Digital mockup
-![Alt text](mockups/myNotes_digital_mockup.png?raw=true "Initial Mockup")
+![Alt text](mockups/myNotes_digital_mockup.png?raw=true "Digital Mockup")
 
+#### Website
+![Alt text](mockups/myNotes_digital_mockup.png?raw=true "Website")
