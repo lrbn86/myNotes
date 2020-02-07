@@ -15,12 +15,18 @@
           <button id="createNewNoteBtn">Create a new note</button>
         </div>
         <div id="seeNote">
+          <h4 style="margin:0;">Notes will appear below here</h4>
           <ul id="notes">
           </ul>
+          <h4 class="hintMessage"><span style="color: lightskyblue;">Double-click</span> on a note to <span style="color:red;">delete</span> it</h4>
         </div>
       </section>
     </main>
-    <footer>Created by Brandon Nguyen (@lrbn86)</footer>
+    <footer>
+      <p>Notes are stored on your sessionStorage. If you close this window, all data will be <span style="color:red">lost</span>.</p>
+      <p>However, if you only refresh this window, data will persist.</p>
+      <p>Created by Brandon Nguyen (<a href="brandonnguyen.dev" target="_blank" style="color: lightskyblue;">@lrbn86</a>)</p>
+    </footer>
     <script type="text/javascript" src="app.js"></script>
   </body>
 </html>

@@ -5,6 +5,7 @@ noteBodyInput.value = "";
 const notes = document.getElementById("notes");
 const createNewNoteBtn = document.getElementById("createNewNoteBtn");
 const selectedNotes = document.getElementsByClassName("selected");
+const hintMessage = document.getElementsByClassName("hintMessage");
 
 // Stores all the notes in a array
 var notesArray = [];
@@ -38,7 +39,12 @@ createNewNoteBtn.addEventListener("click", function() {
     var noteBlock = createNote(noteBodyInput.value);
     notes.prepend(noteBlock);
     sessionStorage.setItem("notesArray", JSON.stringify(notesArray));
+    // Display hints
+    for (let i = 0; i < hintMessage.length; i++) {
+      hintMessage[i].style.visibility = "visible";
+    }
   }
+
   noteBodyInput.value = "";
   noteBodyInput.focus();
   resetSelections();

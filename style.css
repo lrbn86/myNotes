@@ -15,6 +15,11 @@ body {
 footer {
   position: absolute;
   bottom: 0;
+  padding: 0;
+}
+footer p {
+  margin: 0;
+  padding: 0;
 }
 
 #noteBodyInput, #createNewNoteBtn {
@@ -82,9 +87,15 @@ section {
 #seeNote {
   float: right;
 }
+
+#seeNote h4 {
+  text-align: center;
+}
+
 #createNote {
   float: left;
 }
+
 #createNote, #seeNote {
 
 }
