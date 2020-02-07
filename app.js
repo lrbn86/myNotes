@@ -6,12 +6,17 @@ const notes = document.getElementById("notes");
 const createNewNoteBtn = document.getElementById("createNewNoteBtn");
 const selectedNotes = document.getElementsByClassName("selected");
 
+// Stores all the notes in a array
 var notesArray = [];
 
 function initSetup() {
-  // When page is freshly loaded, we want to check if there exists notes already
-  // If there are notes in storage, then render them
-  // TODO:
+  if (sessionStorage.getItem("notesArray") != null) {
+    notesArray = sessionStorage.getItem("notesArray").split(",");
+    notesArray.forEach(function(note) {
+      var noteBlock = createNote(note);
+      notes.prepend(noteBlock);
+    });
+  }
 }
 initSetup();
 
@@ -20,7 +25,6 @@ function createNote(content) {
   noteBlock.addEventListener("click", selectedFunc);
   noteBlock.addEventListener("dblclick", deleteFunc);
   noteBlock.className = "noteBlock";
-  // TODO:
   noteBlock.textContent = content;
   return noteBlock;
 }
@@ -29,11 +33,14 @@ function createNote(content) {
 createNewNoteBtn.addEventListener("click", function() {
   // Make sure there are no blanks
   if (noteBodyInput.value.trim().length >= 1) {
-    // TODO:
+    notesArray.push(noteBodyInput.value);
+    var noteBlock = createNote(noteBodyInput.value);
+    notes.prepend(noteBlock);
+    sessionStorage.setItem("notesArray", notesArray);
   }
-    noteBodyInput.value = "";
-    noteBodyInput.focus();
-    resetSelections();
+  noteBodyInput.value = "";
+  noteBodyInput.focus();
+  resetSelections();
 });
 
 // If user selects a note, but then erases the note's content, then it will deselect.
@@ -50,6 +57,7 @@ function resetSelections() {
   }
 }
 
+// Highlight (by changing background color thru css) selected element
 function selectedFunc(e) {
   resetSelections();
   e.target.classList.add("selected");
@@ -57,9 +65,12 @@ function selectedFunc(e) {
   noteBodyInput.focus();
 }
 
-// TODO:
-function deleteFunc(e) {
 
+// Remove selected element from both array and storage
+function deleteFunc(e) {
+  notesArray.splice(notesArray.indexOf(e.target.textContent), 1);
+  sessionStorage.setItem("notesArray", notesArray);
+  notes.removeChild(e.target);
   noteBodyInput.value = "";
 }
 
